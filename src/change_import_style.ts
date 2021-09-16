@@ -37,19 +37,20 @@ function removeJsExtensionsFromRequires(contents: string) {
 
 function convertToUmd(args: any, initialContents: string): string {
   const wrapInAMDModule = (contents: string) => {
-    return `// GENERATED CODE DO NOT EDIT
-(function (factory) {
-  if (typeof module === "object" && typeof module.exports === "object") {
-    var v = factory(require, exports);
-    if (v !== undefined) module.exports = v;
-  }
-  else if (typeof define === "function" && define.amd) {
-    define("${args.input_base_path}/${args.output_module_name}",  factory);
-  }
-})(function (require, exports) {
-  ${contents}
-});
-`;
+    return contents;
+//     return `// GENERATED CODE DO NOT EDIT
+// (function (factory) {
+//   if (typeof module === "object" && typeof module.exports === "object") {
+//     var v = factory(require, exports);
+//     if (v !== undefined) module.exports = v;
+//   }
+//   else if (typeof define === "function" && define.amd) {
+//     define("${args.input_base_path}/${args.output_module_name}",  factory);
+//   }
+// })(function (require, exports) {
+//   ${contents}
+// });
+// `;
   };
 
   const transformations: ((c: string) => string)[] = [
